@@ -1,0 +1,10 @@
+<h1>Editing post</h1>
+
+<%= render "form", post: @post %>
+
+<br>
+
+<div>
+  <%= link_to "Exibir post", @post, "class": "btn btn-primary" %> |
+  <%= link_to "Voltar", posts_path, "class": "btn btn-danger" %>
+</div>

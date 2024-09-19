@@ -1,0 +1,2212 @@
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-08-23 15:31:43.497811', '2024-08-23 15:31:43.497813') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePosts (20240823153029)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(30), "body" text, "data_post" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240823153029') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:31:53 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 1957)
+  Rendered layout layouts/application.html.erb (Duration: 331.8ms | Allocations: 101033)
+Completed 200 OK in 391ms (Views: 339.0ms | ActiveRecord: 2.5ms | Allocations: 124675)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:36:51 -0300
+  
+ActionController::RoutingError (uninitialized constant BlogController):
+  
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:36:55 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1707)
+  Rendered layout layouts/application.html.erb (Duration: 32.1ms | Allocations: 17318)
+Completed 200 OK in 40ms (Views: 32.8ms | ActiveRecord: 3.1ms | Allocations: 19440)
+
+
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to PublishDate (20240823153838)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to PublishDate (20240823153838)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aposts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(30) DEFAULT NULL, "body" text DEFAULT NULL, "published_date" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aposts" ("id","title","body","published_date","created_at","updated_at")
+                     SELECT "id","title","body","data_post","created_at","updated_at" FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(30) DEFAULT NULL, "body" text DEFAULT NULL, "published_date" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "posts" ("id","title","body","published_date","created_at","updated_at")
+                     SELECT "id","title","body","published_date","created_at","updated_at" FROM "aposts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aposts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240823153838') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/blog" for 127.0.0.1 at 2024-08-23 12:42:18 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/blog"):
+  
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:42:20 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:42:20.493726') ORDER BY "posts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  Rendered blog/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1540)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 1637)
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 3.3ms | Allocations: 18842)
+
+
+  
+ActionView::Template::Error (undefined method `title' for nil:NilClass):
+    1: <%= @post.title %>
+    2: <%= @post.body %>
+  
+app/views/blog/index.html.erb:1
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:42:42 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:42:42.431482') ORDER BY "posts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  Rendered blog/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 149)
+  Rendered layout layouts/application.html.erb (Duration: 87.4ms | Allocations: 34369)
+Completed 200 OK in 116ms (Views: 99.9ms | ActiveRecord: 3.4ms | Allocations: 38391)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:42:47 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 1356)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 2645)
+Completed 200 OK in 13ms (Views: 11.2ms | ActiveRecord: 0.2ms | Allocations: 3324)
+
+
+Started GET "/admin/posts/new" for 127.0.0.1 at 2024-08-23 12:42:49 -0300
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 25.1ms | Allocations: 3762)
+  Rendered posts/new.html.erb within layouts/application (Duration: 27.2ms | Allocations: 4108)
+  Rendered layout layouts/application.html.erb (Duration: 31.4ms | Allocations: 5390)
+Completed 200 OK in 68ms (Views: 32.8ms | ActiveRecord: 0.5ms | Allocations: 24036)
+
+
+Started POST "/admin/posts" for 127.0.0.1 at 2024-08-23 12:42:58 -0300
+Processing by PostsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"teste", "body"=>"aaaaaaa", "data_post"=>"2024-08-23T12:42"}, "commit"=>"Create Post"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1157)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'data_post' for Post.):
+  
+app/controllers/posts_controller.rb:24:in `create'
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:43:13 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 904)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 2188)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.2ms | Allocations: 2553)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:43:13 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 848)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 2015)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.1ms | Allocations: 2340)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:45:25 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 15.3ms | Allocations: 4280)
+  Rendered layout layouts/application.html.erb (Duration: 114.5ms | Allocations: 38026)
+Completed 200 OK in 156ms (Views: 118.2ms | ActiveRecord: 2.5ms | Allocations: 56258)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:45:26 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:45:26.287302') ORDER BY "posts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 1.8ms | Allocations: 5843)
+
+
+  
+NameError (Could not render layout: undefined local variable or method `application_blank' for #<BlogController:0x0000000000b7c0>):
+  
+actionview (7.1.4) lib/action_view/layouts.rb:332:in `_layout'
+actionview (7.1.4) lib/action_view/layouts.rb:419:in `_default_layout'
+actionview (7.1.4) lib/action_view/layouts.rb:395:in `block in _layout_for_option'
+actionview (7.1.4) lib/action_view/renderer/template_renderer.rb:109:in `resolve_layout'
+actionview (7.1.4) lib/action_view/renderer/template_renderer.rb:89:in `find_layout'
+actionview (7.1.4) lib/action_view/renderer/template_renderer.rb:72:in `render_with_layout'
+actionview (7.1.4) lib/action_view/renderer/template_renderer.rb:59:in `render_template'
+actionview (7.1.4) lib/action_view/renderer/template_renderer.rb:11:in `render'
+actionview (7.1.4) lib/action_view/renderer/renderer.rb:63:in `render_template_to_object'
+actionview (7.1.4) lib/action_view/renderer/renderer.rb:31:in `render_to_object'
+actionview (7.1.4) lib/action_view/rendering.rb:135:in `block in _render_template'
+actionview (7.1.4) lib/action_view/base.rb:290:in `in_rendering_context'
+actionview (7.1.4) lib/action_view/rendering.rb:134:in `_render_template'
+actionpack (7.1.4) lib/action_controller/metal/streaming.rb:256:in `_render_template'
+actionview (7.1.4) lib/action_view/rendering.rb:121:in `render_to_body'
+actionpack (7.1.4) lib/action_controller/metal/rendering.rb:158:in `render_to_body'
+actionpack (7.1.4) lib/action_controller/metal/renderers.rb:141:in `render_to_body'
+actionpack (7.1.4) lib/abstract_controller/rendering.rb:27:in `render'
+actionpack (7.1.4) lib/action_controller/metal/rendering.rb:139:in `render'
+actionpack (7.1.4) lib/action_controller/metal/instrumentation.rb:29:in `block (2 levels) in render'
+/home/lucas_faes/.rbenv/versions/3.0.7/lib/ruby/3.0.0/benchmark.rb:308:in `realtime'
+activesupport (7.1.4) lib/active_support/core_ext/benchmark.rb:14:in `ms'
+actionpack (7.1.4) lib/action_controller/metal/instrumentation.rb:29:in `block in render'
+actionpack (7.1.4) lib/action_controller/metal/instrumentation.rb:98:in `cleanup_view_runtime'
+activerecord (7.1.4) lib/active_record/railties/controller_runtime.rb:39:in `cleanup_view_runtime'
+actionpack (7.1.4) lib/action_controller/metal/instrumentation.rb:28:in `render'
+actionpack (7.1.4) lib/action_controller/metal/implicit_render.rb:37:in `default_render'
+actionpack (7.1.4) lib/action_controller/metal/basic_implicit_render.rb:7:in `send_action'
+actionpack (7.1.4) lib/abstract_controller/base.rb:224:in `process_action'
+actionpack (7.1.4) lib/action_controller/metal/rendering.rb:165:in `process_action'
+actionpack (7.1.4) lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+activesupport (7.1.4) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.6) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.6) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.1.4) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.1.4) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.4) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.4) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.4) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.4) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.4) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.4) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.4) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.4) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.4) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.4) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.4) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.4) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.4) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.4) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.4) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.4) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.4) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.4) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.4) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.4) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.4) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.4) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.1.7) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.7) lib/rack/etag.rb:29:in `call'
+rack (3.1.7) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.7) lib/rack/head.rb:15:in `call'
+actionpack (7.1.4) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.4) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.4) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.4) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.4) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.4) lib/active_support/tagged_logging.rb:139:in `block in tagged'
+activesupport (7.1.4) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.4) lib/active_support/tagged_logging.rb:139:in `tagged'
+activesupport (7.1.4) lib/active_support/broadcast_logger.rb:241:in `method_missing'
+railties (7.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.1.7) lib/rack/method_override.rb:28:in `call'
+rack (3.1.7) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.4) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.4) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.1.7) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.4) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.4) lib/rails/engine.rb:536:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:45:55 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:45:55.408580') ORDER BY "posts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.8ms | Allocations: 147)
+  Rendered layout layouts/application_blank.html.erb (Duration: 2.0ms | Allocations: 338)
+Completed 200 OK in 18ms (Views: 5.8ms | ActiveRecord: 3.7ms | Allocations: 4245)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:46:05 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1311)
+  Rendered layout layouts/application.html.erb (Duration: 27.9ms | Allocations: 16910)
+Completed 200 OK in 31ms (Views: 29.3ms | ActiveRecord: 0.2ms | Allocations: 17655)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2024-08-23 12:46:10 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/admin"):
+  
+Started GET "/admin/" for 127.0.0.1 at 2024-08-23 12:46:44 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 1703)
+  Rendered layout layouts/application.html.erb (Duration: 34.2ms | Allocations: 17315)
+Completed 200 OK in 41ms (Views: 34.1ms | ActiveRecord: 2.5ms | Allocations: 19501)
+
+
+Started GET "/admin/posts/new" for 127.0.0.1 at 2024-08-23 12:49:14 -0300
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 7.8ms | Allocations: 3259)
+  Rendered posts/new.html.erb within layouts/application (Duration: 9.3ms | Allocations: 3614)
+  Rendered layout layouts/application.html.erb (Duration: 30.8ms | Allocations: 19151)
+Completed 200 OK in 70ms (Views: 33.0ms | ActiveRecord: 2.9ms | Allocations: 39820)
+
+
+Started POST "/admin/posts" for 127.0.0.1 at 2024-08-23 12:49:17 -0300
+Processing by PostsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"teste", "body"=>"aaaaaaaa", "published_date"=>""}, "commit"=>"Create Post"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+  [1m[36mPost Create (2.0ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "published_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "teste"], ["body", "aaaaaaaa"], ["published_date", nil], ["created_at", "2024-08-23 15:49:17.946176"], ["updated_at", "2024-08-23 15:49:17.946176"]]
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/admin/posts/1
+Completed 302 Found in 14ms (ActiveRecord: 3.3ms | Allocations: 4113)
+
+
+Started GET "/admin/posts/1" for 127.0.0.1 at 2024-08-23 12:49:17 -0300
+Processing by PostsController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 1.6ms | Allocations: 291)
+  Rendered posts/show.html.erb within layouts/application (Duration: 8.4ms | Allocations: 1695)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | Allocations: 2960)
+Completed 200 OK in 23ms (Views: 13.0ms | ActiveRecord: 0.2ms | Allocations: 6220)
+
+
+Started GET "/admin/posts/1/edit" for 127.0.0.1 at 2024-08-23 12:49:19 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 4.5ms | Allocations: 1152)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 6.8ms | Allocations: 1431)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | Allocations: 2582)
+Completed 200 OK in 20ms (Views: 12.3ms | ActiveRecord: 0.3ms | Allocations: 3606)
+
+
+Started DELETE "/admin/posts/1" for 127.0.0.1 at 2024-08-23 12:49:20 -0300
+Processing by PostsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:52:in `destroy'
+  [1m[36mPost Destroy (1.3ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/posts_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:52:in `destroy'
+Redirected to http://127.0.0.1:3000/admin/posts
+Completed 302 Found in 7ms (ActiveRecord: 1.7ms | Allocations: 2836)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:49:20 -0300
+Processing by PostsController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1150)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 2317)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.1ms | Allocations: 2729)
+
+
+Started GET "/admin/posts/new" for 127.0.0.1 at 2024-08-23 12:49:20 -0300
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 8.4ms | Allocations: 975)
+  Rendered posts/new.html.erb within layouts/application (Duration: 9.5ms | Allocations: 1052)
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | Allocations: 2206)
+Completed 200 OK in 18ms (Views: 15.9ms | ActiveRecord: 0.0ms | Allocations: 2538)
+
+
+Started POST "/admin/posts" for 127.0.0.1 at 2024-08-23 12:49:39 -0300
+Processing by PostsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"teste", "body"=>"<h2> Olá mundo</h2>", "published_date"=>"2024-08-23T12:49"}, "commit"=>"Create Post"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+  [1m[36mPost Create (7.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "published_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "teste"], ["body", "<h2> Olá mundo</h2>"], ["published_date", "2024-08-23 12:49:00"], ["created_at", "2024-08-23 15:49:39.371552"], ["updated_at", "2024-08-23 15:49:39.371552"]]
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/admin/posts/2
+Completed 302 Found in 29ms (ActiveRecord: 7.9ms | Allocations: 2698)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 12:49:39 -0300
+Processing by PostsController#show as TURBO_STREAM
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.8ms | Allocations: 50)
+  Rendered posts/show.html.erb within layouts/application (Duration: 6.3ms | Allocations: 540)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | Allocations: 1699)
+Completed 200 OK in 24ms (Views: 16.1ms | ActiveRecord: 0.3ms | Allocations: 2551)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:50:58 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:50:58.617481') ORDER BY "posts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.7ms | Allocations: 148)
+  Rendered layout layouts/application_blank.html.erb (Duration: 1.7ms | Allocations: 333)
+Completed 200 OK in 7ms (Views: 2.9ms | ActiveRecord: 0.2ms | Allocations: 2189)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:54:20 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:54:20.646417') ORDER BY "posts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 1.3ms | Allocations: 142)
+  Rendered layout layouts/application_blank.html.erb (Duration: 2.4ms | Allocations: 333)
+Completed 200 OK in 29ms (Views: 4.5ms | ActiveRecord: 3.2ms | Allocations: 7185)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:55:52 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:55:53.035795') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.6ms | Allocations: 140)
+  Rendered layout layouts/application_blank.html.erb (Duration: 1.6ms | Allocations: 331)
+Completed 200 OK in 18ms (Views: 4.1ms | ActiveRecord: 3.3ms | Allocations: 6668)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:55:55 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.7ms | Allocations: 287)
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1859)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | Allocations: 17459)
+Completed 200 OK in 20ms (Views: 19.5ms | ActiveRecord: 0.1ms | Allocations: 18203)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 12:55:57 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 3.0ms | Allocations: 730)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 1888)
+Completed 200 OK in 12ms (Views: 7.3ms | ActiveRecord: 0.3ms | Allocations: 3505)
+
+
+Started GET "/admin/posts/new" for 127.0.0.1 at 2024-08-23 12:55:57 -0300
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 6.9ms | Allocations: 1493)
+  Rendered posts/new.html.erb within layouts/application (Duration: 9.7ms | Allocations: 1782)
+  Rendered layout layouts/application.html.erb (Duration: 13.8ms | Allocations: 2936)
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.0ms | Allocations: 3334)
+
+
+Started POST "/admin/posts" for 127.0.0.1 at 2024-08-23 12:56:03 -0300
+Processing by PostsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"aaaaaaaaaaa", "body"=>"aaaaaaaaaaaa", "published_date"=>"2024-08-23T12:56"}, "commit"=>"Create Post"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+  [1m[36mPost Create (2.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "published_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "aaaaaaaaaaa"], ["body", "aaaaaaaaaaaa"], ["published_date", "2024-08-23 12:56:00"], ["created_at", "2024-08-23 15:56:03.741530"], ["updated_at", "2024-08-23 15:56:03.741530"]]
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/admin/posts/3
+Completed 302 Found in 12ms (ActiveRecord: 3.6ms | Allocations: 2746)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:56:03 -0300
+Processing by PostsController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.9ms | Allocations: 590)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 1740)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.1ms | Allocations: 2639)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:56:06 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:56:06.120685') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1094)
+
+
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 12:56:22 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 4.9ms | Allocations: 1008)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 6.8ms | Allocations: 1281)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 2431)
+Completed 200 OK in 18ms (Views: 11.7ms | ActiveRecord: 0.3ms | Allocations: 3337)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:56:24 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 1119)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 2286)
+Completed 200 OK in 13ms (Views: 11.5ms | ActiveRecord: 0.2ms | Allocations: 2611)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 12:56:25 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 3.1ms | Allocations: 511)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 1661)
+Completed 200 OK in 16ms (Views: 10.5ms | ActiveRecord: 0.2ms | Allocations: 2508)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:56:26 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1119)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 2286)
+Completed 200 OK in 12ms (Views: 11.2ms | ActiveRecord: 0.2ms | Allocations: 2611)
+
+
+Started GET "/admin/posts/2/edit" for 127.0.0.1 at 2024-08-23 12:56:27 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 7.0ms | Allocations: 1031)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 8.3ms | Allocations: 1135)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 2285)
+Completed 200 OK in 21ms (Views: 15.5ms | ActiveRecord: 0.2ms | Allocations: 3132)
+
+
+Started PATCH "/admin/posts/2" for 127.0.0.1 at 2024-08-23 12:56:39 -0300
+Processing by PostsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"teste", "body"=>"<h2> Olá mundo</h2>", "published_date"=>"2024-08-23T12:57"}, "commit"=>"Update Post", "id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+  [1m[36mPost Update (2.2ms)[0m  [1m[33mUPDATE "posts" SET "published_date" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["published_date", "2024-08-23 12:57:00"], ["updated_at", "2024-08-23 15:56:39.375128"], ["id", 2]]
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+Redirected to http://127.0.0.1:3000/admin/posts/2
+Completed 302 Found in 17ms (ActiveRecord: 2.7ms | Allocations: 3363)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 12:56:39 -0300
+Processing by PostsController#show as TURBO_STREAM
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 542)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 1692)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.1ms | Allocations: 2542)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:56:41 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:56:41.993106') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.9ms | Allocations: 96)
+Completed 200 OK in 6ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:56:45 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:56:45.335002') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.5ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.2ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:56:46 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:56:46.176471') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.5ms | Allocations: 96)
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:56:51 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:56:51.925583') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.7ms | Allocations: 96)
+Completed 200 OK in 10ms (Views: 2.0ms | ActiveRecord: 0.6ms | Allocations: 1064)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:56:58 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1104)
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | Allocations: 2271)
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 0.1ms | Allocations: 2596)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:57:07 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:57:07.119954') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 96)
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:57:07 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:57:07.686084') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1064)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:57:09 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.5ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 4.2ms | Allocations: 508)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 1658)
+Completed 200 OK in 16ms (Views: 11.4ms | ActiveRecord: 0.2ms | Allocations: 2505)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:57:09 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.3ms | Allocations: 511)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 1661)
+Completed 200 OK in 13ms (Views: 7.6ms | ActiveRecord: 0.2ms | Allocations: 2509)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:57:11 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 1.1ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 1104)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | Allocations: 2271)
+Completed 200 OK in 17ms (Views: 14.8ms | ActiveRecord: 0.3ms | Allocations: 2596)
+
+
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 12:57:11 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 4.7ms | Allocations: 1031)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 5.8ms | Allocations: 1135)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 2285)
+Completed 200 OK in 18ms (Views: 12.8ms | ActiveRecord: 0.2ms | Allocations: 3132)
+
+
+Started PATCH "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:57:16 -0300
+Processing by PostsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"aaaaaaaaaaa", "body"=>"aaaaaaaaaaaa", "published_date"=>"2024-08-23T12:58"}, "commit"=>"Update Post", "id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+  [1m[36mPost Update (2.3ms)[0m  [1m[33mUPDATE "posts" SET "published_date" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["published_date", "2024-08-23 12:58:00"], ["updated_at", "2024-08-23 15:57:16.797771"], ["id", 3]]
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+Redirected to http://127.0.0.1:3000/admin/posts/3
+Completed 302 Found in 11ms (ActiveRecord: 2.7ms | Allocations: 3201)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:57:16 -0300
+Processing by PostsController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 545)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 1695)
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 0.1ms | Allocations: 2545)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:57:18 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:57:18.877019') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 96)
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 1078)
+
+
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:57:51.337805') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:58:01.637635') /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date < '2024-08-23 15:58:07.171793') /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 12:58:14 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 4.9ms | Allocations: 1003)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 5.6ms | Allocations: 1107)
+  Rendered layout layouts/application.html.erb (Duration: 9.5ms | Allocations: 2257)
+Completed 200 OK in 18ms (Views: 11.0ms | ActiveRecord: 0.3ms | Allocations: 3104)
+
+
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 12:58:15 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 6.7ms | Allocations: 1006)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 7.6ms | Allocations: 1110)
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | Allocations: 2260)
+Completed 200 OK in 19ms (Views: 14.1ms | ActiveRecord: 0.2ms | Allocations: 3107)
+
+
+Started PATCH "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:58:18 -0300
+Processing by PostsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"aaaaaaaaaaa", "body"=>"aaaaaaaaaaaa", "published_date"=>"2024-08-23T14:58"}, "commit"=>"Update Post", "id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+  [1m[36mPost Update (2.9ms)[0m  [1m[33mUPDATE "posts" SET "published_date" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["published_date", "2024-08-23 14:58:00"], ["updated_at", "2024-08-23 15:58:18.652410"], ["id", 3]]
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+Redirected to http://127.0.0.1:3000/admin/posts/3
+Completed 302 Found in 17ms (ActiveRecord: 3.5ms | Allocations: 3204)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:58:18 -0300
+Processing by PostsController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.1ms | Allocations: 545)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 1704)
+Completed 200 OK in 8ms (Views: 5.6ms | ActiveRecord: 0.1ms | Allocations: 2554)
+
+
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date < '2024-08-23 15:58:20.607347') /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date < '2024-08-23 15:58:21.864550') /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date < '2024-08-23 15:58:22.787470') /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 12:58:29 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1110)
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | Allocations: 2277)
+Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 0.1ms | Allocations: 2602)
+
+
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 12:59:13 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 6.2ms | Allocations: 1021)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 7.5ms | Allocations: 1125)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 2275)
+Completed 200 OK in 21ms (Views: 14.8ms | ActiveRecord: 0.3ms | Allocations: 3122)
+
+
+Started PATCH "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:59:19 -0300
+Processing by PostsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"aaaaaaaaaaa", "body"=>"aaaaaaaaaaaa", "published_date"=>"2024-08-23T16:01"}, "commit"=>"Update Post", "id"=>"3"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+  [1m[36mPost Update (4.1ms)[0m  [1m[33mUPDATE "posts" SET "published_date" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["published_date", "2024-08-23 16:01:00"], ["updated_at", "2024-08-23 15:59:19.479771"], ["id", 3]]
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:40:in `block in update'
+Redirected to http://127.0.0.1:3000/admin/posts/3
+Completed 302 Found in 21ms (ActiveRecord: 4.8ms | Allocations: 3208)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 12:59:19 -0300
+Processing by PostsController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 527)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 1677)
+Completed 200 OK in 8ms (Views: 5.6ms | ActiveRecord: 0.1ms | Allocations: 2527)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:59:22 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:59:22.251531') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.6ms | Allocations: 96)
+Completed 200 OK in 7ms (Views: 1.8ms | ActiveRecord: 0.4ms | Allocations: 1064)
+
+
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date < '2024-08-23 15:59:26.259321') /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2024-08-23 12:59:43 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 15:59:43.264011') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 96)
+Completed 200 OK in 23ms (Views: 1.2ms | ActiveRecord: 0.5ms | Allocations: 1065)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 13:00:18 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 16:00:18.857181') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 1065)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 13:00:25 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 16:00:25.311983') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.8ms | Allocations: 96)
+Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 13:00:25 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 16:00:25.761844') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.5ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 13:00:26 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 16:00:26.274335') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.5ms | Allocations: 96)
+Completed 200 OK in 6ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 13:00:26 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 16:00:26.551670') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 13:00:48 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 16:00:48.799448') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.1ms | ActiveRecord: 0.3ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 13:01:01 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 16:01:01.145366') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.5ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 1068)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:51 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:51.447573') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.4ms | Allocations: 237)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.8ms | Allocations: 467)
+Completed 200 OK in 50ms (Views: 4.0ms | ActiveRecord: 1.8ms | Allocations: 38874)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:52 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:52.363718') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 15)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.6ms | Allocations: 105)
+Completed 200 OK in 9ms (Views: 1.6ms | ActiveRecord: 0.6ms | Allocations: 1311)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:53 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:53.763273') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.3ms | Allocations: 96)
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 1084)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:54 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:54.101245') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.3ms | Allocations: 96)
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.3ms | Allocations: 1083)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:54 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (1.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:54.346703') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.6ms | Allocations: 96)
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 1.5ms | Allocations: 1083)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:54 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:54.488977') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.2ms | Allocations: 96)
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:54 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:54.690108') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 1.0ms | Allocations: 96)
+Completed 200 OK in 8ms (Views: 2.5ms | ActiveRecord: 0.5ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:54 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:54.843577') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.7ms | Allocations: 96)
+Completed 200 OK in 9ms (Views: 2.1ms | ActiveRecord: 0.7ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:12:54 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:12:55.001263') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.2ms | Allocations: 96)
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1064)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:13:30 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 1.0ms | Allocations: 376)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 18.8ms | Allocations: 4805)
+  Rendered layout layouts/application.html.erb (Duration: 71.6ms | Allocations: 38952)
+Completed 200 OK in 74ms (Views: 72.8ms | ActiveRecord: 0.2ms | Allocations: 39716)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-08-23 14:13:31 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1260)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 2435)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.1ms | Allocations: 2796)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-08-23 14:13:33 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 1101)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 2275)
+Completed 200 OK in 13ms (Views: 11.8ms | ActiveRecord: 0.2ms | Allocations: 2600)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:34 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:34.182943') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.5ms | Allocations: 96)
+Completed 200 OK in 5ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 1126)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:34 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:34.241928') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.5ms | Allocations: 96)
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1064)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:39 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:39.959546') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.5ms | Allocations: 120)
+  Rendered layout layouts/application_blank.html.erb (Duration: 1.2ms | Allocations: 314)
+Completed 200 OK in 17ms (Views: 3.1ms | ActiveRecord: 3.6ms | Allocations: 6722)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:40 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:40.544188') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.5ms | Allocations: 94)
+Completed 200 OK in 9ms (Views: 2.0ms | ActiveRecord: 0.7ms | Allocations: 1229)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:41 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:41.105851') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 1.1ms | Allocations: 94)
+Completed 200 OK in 10ms (Views: 3.1ms | ActiveRecord: 0.6ms | Allocations: 1062)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:41 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:41.517766') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.9ms | Allocations: 95)
+Completed 200 OK in 10ms (Views: 2.5ms | ActiveRecord: 0.7ms | Allocations: 1063)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:41 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:41.689168') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.0ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.2ms | Allocations: 94)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 1062)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:41 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:41.888913') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 1.2ms | Allocations: 94)
+Completed 200 OK in 10ms (Views: 3.3ms | ActiveRecord: 0.6ms | Allocations: 1062)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:42 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:42.027610') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.0ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.3ms | Allocations: 94)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 1062)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:42 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:42.195442') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.8ms | Allocations: 94)
+Completed 200 OK in 11ms (Views: 2.6ms | ActiveRecord: 0.8ms | Allocations: 1062)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:42 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:42.323825') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.0ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.3ms | Allocations: 94)
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 1062)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:13:42 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:13:42.469628') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:4:in `index'
+  Rendering layout layouts/application_blank.html.erb
+  Rendering blog/index.html.erb within layouts/application_blank
+  Rendered blog/index.html.erb within layouts/application_blank (Duration: 0.1ms | Allocations: 6)
+  Rendered layout layouts/application_blank.html.erb (Duration: 0.4ms | Allocations: 94)
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1062)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:14:31 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:14:31.959498') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  Rendered blog/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 142)
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | Allocations: 16255)
+Completed 200 OK in 76ms (Views: 21.4ms | ActiveRecord: 32.8ms | Allocations: 22723)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:15:06 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:15:06.546431') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  Rendered blog/index.html.erb within layouts/application (Duration: 0.3ms | Allocations: 169)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 16194)
+Completed 200 OK in 22ms (Views: 14.2ms | ActiveRecord: 1.9ms | Allocations: 22643)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:15:14 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:15:14.304713') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  Rendered blog/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 168)
+  Rendered layout layouts/application.html.erb (Duration: 18.0ms | Allocations: 16179)
+Completed 200 OK in 34ms (Views: 20.1ms | ActiveRecord: 2.6ms | Allocations: 22621)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-08-23 14:15:16 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 1.0ms | Allocations: 285)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 1994)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 3290)
+Completed 200 OK in 15ms (Views: 11.7ms | ActiveRecord: 0.2ms | Allocations: 3953)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:15:18 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 70)
+  Rendered posts/show.html.erb within layouts/application (Duration: 3.6ms | Allocations: 958)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 2229)
+Completed 200 OK in 20ms (Views: 8.3ms | ActiveRecord: 0.5ms | Allocations: 5034)
+
+
+Started GET "/admin/posts/new" for 127.0.0.1 at 2024-08-23 14:15:19 -0300
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 17.1ms | Allocations: 3408)
+  Rendered posts/new.html.erb within layouts/application (Duration: 20.1ms | Allocations: 3728)
+  Rendered layout layouts/application.html.erb (Duration: 23.0ms | Allocations: 5031)
+Completed 200 OK in 27ms (Views: 24.4ms | ActiveRecord: 0.0ms | Allocations: 5477)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 14:15:20 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 66)
+  Rendered posts/show.html.erb within layouts/application (Duration: 3.1ms | Allocations: 547)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | Allocations: 1705)
+Completed 200 OK in 13ms (Views: 9.1ms | ActiveRecord: 0.2ms | Allocations: 2658)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-08-23 14:15:34 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 1.5ms | Allocations: 290)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 13.1ms | Allocations: 5473)
+  Rendered layout layouts/application.html.erb (Duration: 31.2ms | Allocations: 21187)
+Completed 200 OK in 37ms (Views: 30.7ms | ActiveRecord: 2.6ms | Allocations: 23366)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:15:36 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:15:36.436574') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  Rendered blog/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 155)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 1735)
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 0.3ms | Allocations: 3172)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-08-23 14:15:36 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 48)
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 7.4ms | Allocations: 1130)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 2304)
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.2ms | Allocations: 2630)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-08-23 14:17:04 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.8ms | Allocations: 292)
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 12.0ms | Allocations: 5516)
+  Rendered layout layouts/application.html.erb (Duration: 29.5ms | Allocations: 21229)
+Completed 200 OK in 42ms (Views: 29.1ms | ActiveRecord: 2.6ms | Allocations: 23408)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:17:05 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 721)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 1886)
+Completed 200 OK in 42ms (Views: 26.9ms | ActiveRecord: 0.4ms | Allocations: 3543)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:17:07 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 499)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1656)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 2504)
+
+
+Started GET "/admin/posts/2/edit" for 127.0.0.1 at 2024-08-23 14:17:08 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 8.5ms | Allocations: 1583)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 12.1ms | Allocations: 1917)
+  Rendered layout layouts/application.html.erb (Duration: 16.2ms | Allocations: 3092)
+Completed 200 OK in 23ms (Views: 17.7ms | ActiveRecord: 0.2ms | Allocations: 3999)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:17:08 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 7.9ms | Allocations: 1101)
+  Rendered layout layouts/application.html.erb (Duration: 13.5ms | Allocations: 2275)
+Completed 200 OK in 18ms (Views: 15.3ms | ActiveRecord: 0.3ms | Allocations: 2601)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:17:09 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.5ms | Allocations: 37)
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered posts/index.html.erb within layouts/application (Duration: 7.3ms | Allocations: 1131)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | Allocations: 2305)
+Completed 200 OK in 15ms (Views: 13.2ms | ActiveRecord: 0.3ms | Allocations: 2630)
+
+
+Started GET "/admin/posts/2/edit" for 127.0.0.1 at 2024-08-23 14:17:09 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 4.4ms | Allocations: 1016)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 5.3ms | Allocations: 1120)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 2287)
+Completed 200 OK in 13ms (Views: 9.6ms | ActiveRecord: 0.1ms | Allocations: 3135)
+
+
+Started GET "/admin/posts/2/edit" for 127.0.0.1 at 2024-08-23 14:17:09 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 4.7ms | Allocations: 1031)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 5.6ms | Allocations: 1135)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 2302)
+Completed 200 OK in 18ms (Views: 11.5ms | ActiveRecord: 0.3ms | Allocations: 3149)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:17:47 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 1.4ms | Allocations: 290)
+  Rendered posts/show.html.erb within layouts/application (Duration: 5.4ms | Allocations: 1316)
+  Rendered layout layouts/application.html.erb (Duration: 26.6ms | Allocations: 17078)
+Completed 200 OK in 48ms (Views: 31.3ms | ActiveRecord: 2.3ms | Allocations: 24043)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:04 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.6ms | Allocations: 290)
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1340)
+  Rendered layout layouts/application.html.erb (Duration: 16.1ms | Allocations: 17019)
+Completed 200 OK in 29ms (Views: 18.1ms | ActiveRecord: 2.2ms | Allocations: 23978)
+
+
+Started GET "/admin/posts/2/edit" for 127.0.0.1 at 2024-08-23 14:18:05 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 3.6ms | Allocations: 1565)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 5.2ms | Allocations: 1899)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | Allocations: 3066)
+Completed 200 OK in 12ms (Views: 8.4ms | ActiveRecord: 0.2ms | Allocations: 4053)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:21 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 1.0ms | Allocations: 290)
+  Rendered posts/show.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1334)
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | Allocations: 17013)
+Completed 200 OK in 24ms (Views: 15.7ms | ActiveRecord: 1.8ms | Allocations: 23915)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:22 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 534)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 1691)
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 0.2ms | Allocations: 2621)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:22 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 534)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 1691)
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.1ms | Allocations: 2538)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:23 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 537)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 1694)
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.1ms | Allocations: 2541)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:23 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.8ms | Allocations: 507)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 1664)
+Completed 200 OK in 8ms (Views: 5.4ms | ActiveRecord: 0.1ms | Allocations: 2511)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:23 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 525)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 1682)
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.1ms | Allocations: 2529)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:29 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.8ms | Allocations: 290)
+  Rendered posts/show.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1348)
+  Rendered layout layouts/application.html.erb (Duration: 16.7ms | Allocations: 17123)
+Completed 200 OK in 42ms (Views: 18.5ms | ActiveRecord: 2.7ms | Allocations: 24099)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:29 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 525)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | Allocations: 1685)
+Completed 200 OK in 4ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 2617)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:29 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 519)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 1676)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.1ms | Allocations: 2524)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:29 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 1.4ms | Allocations: 516)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 1673)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.1ms | Allocations: 2520)
+
+
+Started GET "/admin/posts/2/edit" for 127.0.0.1 at 2024-08-23 14:18:30 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 6.7ms | Allocations: 1562)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 9.3ms | Allocations: 1896)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 3063)
+Completed 200 OK in 19ms (Views: 13.8ms | ActiveRecord: 0.2ms | Allocations: 3967)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:18:59 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.7ms | Allocations: 290)
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1337)
+  Rendered layout layouts/application.html.erb (Duration: 21.2ms | Allocations: 17099)
+Completed 200 OK in 43ms (Views: 23.6ms | ActiveRecord: 2.9ms | Allocations: 24024)
+
+
+Started GET "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:19:13 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.9ms | Allocations: 290)
+  Rendered posts/show.html.erb within layouts/application (Duration: 4.4ms | Allocations: 1326)
+  Rendered layout layouts/application.html.erb (Duration: 22.6ms | Allocations: 17005)
+Completed 200 OK in 39ms (Views: 25.1ms | ActiveRecord: 3.2ms | Allocations: 23963)
+
+
+Started DELETE "/admin/posts/2" for 127.0.0.1 at 2024-08-23 14:19:32 -0300
+Processing by PostsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:52:in `destroy'
+  [1m[36mPost Destroy (0.9ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/posts_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (9.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:52:in `destroy'
+Redirected to http://127.0.0.1:3000/admin/posts
+Completed 302 Found in 22ms (ActiveRecord: 12.6ms | Allocations: 8290)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:19:32 -0300
+Processing by PostsController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.6ms | Allocations: 287)
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1960)
+  Rendered layout layouts/application.html.erb (Duration: 18.3ms | Allocations: 17673)
+Completed 200 OK in 22ms (Views: 20.3ms | ActiveRecord: 0.1ms | Allocations: 19054)
+
+
+Started GET "/admin/posts/new" for 127.0.0.1 at 2024-08-23 14:19:33 -0300
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 6.2ms | Allocations: 1524)
+  Rendered posts/new.html.erb within layouts/application (Duration: 9.8ms | Allocations: 1814)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | Allocations: 2985)
+Completed 200 OK in 18ms (Views: 15.2ms | ActiveRecord: 0.0ms | Allocations: 3403)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 14:19:33 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 750)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 1907)
+Completed 200 OK in 19ms (Views: 7.1ms | ActiveRecord: 0.2ms | Allocations: 2858)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:19:37 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 957)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 2131)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 0.2ms | Allocations: 2458)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 14:19:37 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 3.2ms | Allocations: 516)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 1673)
+Completed 200 OK in 19ms (Views: 10.1ms | ActiveRecord: 0.1ms | Allocations: 2520)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:20:34 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.9ms | Allocations: 290)
+  Rendered posts/index.html.erb within layouts/application (Duration: 8.3ms | Allocations: 5403)
+  Rendered layout layouts/application.html.erb (Duration: 24.1ms | Allocations: 21208)
+Completed 200 OK in 28ms (Views: 24.1ms | ActiveRecord: 1.7ms | Allocations: 23392)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:20:34 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/index.html.erb within layouts/application (Duration: 5.3ms | Allocations: 967)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 2141)
+Completed 200 OK in 13ms (Views: 10.5ms | ActiveRecord: 0.2ms | Allocations: 2486)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:20:35 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/index.html.erb within layouts/application (Duration: 7.3ms | Allocations: 966)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | Allocations: 2140)
+Completed 200 OK in 16ms (Views: 13.6ms | ActiveRecord: 0.3ms | Allocations: 2465)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 14:20:35 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.6ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 5.8ms | Allocations: 759)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 1916)
+Completed 200 OK in 22ms (Views: 14.5ms | ActiveRecord: 0.4ms | Allocations: 3551)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:20:36 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 969)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 2143)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.2ms | Allocations: 2468)
+
+
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 14:20:36 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 9.2ms | Allocations: 1552)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 13.1ms | Allocations: 1907)
+  Rendered layout layouts/application.html.erb (Duration: 19.8ms | Allocations: 3074)
+Completed 200 OK in 28ms (Views: 23.0ms | ActiveRecord: 0.2ms | Allocations: 3978)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:20:37 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 978)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | Allocations: 2152)
+Completed 200 OK in 17ms (Views: 15.3ms | ActiveRecord: 0.2ms | Allocations: 2477)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:20:56 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.8ms | Allocations: 290)
+  Rendered posts/index.html.erb within layouts/application (Duration: 12.5ms | Allocations: 5351)
+  Rendered layout layouts/application.html.erb (Duration: 30.5ms | Allocations: 21146)
+Completed 200 OK in 37ms (Views: 30.5ms | ActiveRecord: 2.7ms | Allocations: 23330)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:20:56 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 979)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 2153)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.1ms | Allocations: 2498)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 14:20:57 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 5.0ms | Allocations: 750)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 1907)
+Completed 200 OK in 18ms (Views: 10.0ms | ActiveRecord: 0.6ms | Allocations: 3542)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:20:57 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/index.html.erb within layouts/application (Duration: 5.6ms | Allocations: 963)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 2137)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 0.2ms | Allocations: 2462)
+
+
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 14:20:58 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 3.9ms | Allocations: 2329)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 13.3ms | Allocations: 2653)
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | Allocations: 2741)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.1ms | Allocations: 3685)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body, style: "display: block" %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.label :published_date, style: "display: block" %>
+    <%= form.datetime_field :published_date %>
+  </div>
+
+  <div>
+    <%= form.submit, "class": "btn btn-danger" %>
+  </div>
+<% end %>
+
+):
+1:    <%= form_with(model: post) do |form| %>
+2:      <% if post.errors.any? %>
+3:        <div style="color: red">
+4:          <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+5:    
+6:          <ul>
+7:            <% post.errors.each do |error| %>
+8:              <li><%= error.full_message %></li>
+9:            <% end %>
+10:          </ul>
+11:        </div>
+12:      <% end %>
+13:    
+14:      <div>
+15:        <%= form.label :title, style: "display: block" %>
+16:        <%= form.text_field :title %>
+17:      </div>
+18:    
+19:      <div>
+20:        <%= form.label :body, style: "display: block" %>
+21:        <%= form.text_area :body %>
+22:      </div>
+23:    
+24:      <div>
+25:        <%= form.label :published_date, style: "display: block" %>
+26:        <%= form.datetime_field :published_date %>
+27:      </div>
+28:    
+29:      <div>
+30:        <%= form.submit, "class": "btn btn-danger" %>
+31:      </div>
+32:    <% end %>
+  
+app/views/posts/_form.html.erb:30: syntax error, unexpected tLABEL_END, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+app/views/posts/edit.html.erb:3
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 14:20:59 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 0.8ms | Allocations: 1491)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1564)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1651)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 2609)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body, style: "display: block" %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.label :published_date, style: "display: block" %>
+    <%= form.datetime_field :published_date %>
+  </div>
+
+  <div>
+    <%= form.submit, "class": "btn btn-danger" %>
+  </div>
+<% end %>
+
+):
+1:    <%= form_with(model: post) do |form| %>
+2:      <% if post.errors.any? %>
+3:        <div style="color: red">
+4:          <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+5:    
+6:          <ul>
+7:            <% post.errors.each do |error| %>
+8:              <li><%= error.full_message %></li>
+9:            <% end %>
+10:          </ul>
+11:        </div>
+12:      <% end %>
+13:    
+14:      <div>
+15:        <%= form.label :title, style: "display: block" %>
+16:        <%= form.text_field :title %>
+17:      </div>
+18:    
+19:      <div>
+20:        <%= form.label :body, style: "display: block" %>
+21:        <%= form.text_area :body %>
+22:      </div>
+23:    
+24:      <div>
+25:        <%= form.label :published_date, style: "display: block" %>
+26:        <%= form.datetime_field :published_date %>
+27:      </div>
+28:    
+29:      <div>
+30:        <%= form.submit, "class": "btn btn-danger" %>
+31:      </div>
+32:    <% end %>
+  
+app/views/posts/_form.html.erb:30: syntax error, unexpected tLABEL_END, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+app/views/posts/edit.html.erb:3
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 14:21:34 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 4.0ms | Allocations: 1774)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 6.0ms | Allocations: 2189)
+  Rendered layout layouts/application.html.erb (Duration: 26.6ms | Allocations: 17970)
+Completed 200 OK in 47ms (Views: 29.2ms | ActiveRecord: 3.3ms | Allocations: 24906)
+
+
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 14:22:40 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 2.9ms | Allocations: 1746)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 6.1ms | Allocations: 2154)
+  Rendered layout layouts/application.html.erb (Duration: 17.6ms | Allocations: 17845)
+Completed 200 OK in 32ms (Views: 19.8ms | ActiveRecord: 2.3ms | Allocations: 24721)
+
+
+Started GET "/admin/posts/3/edit" for 127.0.0.1 at 2024-08-23 14:22:40 -0300
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 3.5ms | Allocations: 1034)
+  Rendered posts/edit.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1148)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 2315)
+Completed 200 OK in 13ms (Views: 7.8ms | ActiveRecord: 0.3ms | Allocations: 3245)
+
+
+Started GET "/admin/posts" for 127.0.0.1 at 2024-08-23 14:22:40 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 1.8ms | Allocations: 251)
+  Rendered posts/index.html.erb within layouts/application (Duration: 12.1ms | Allocations: 1616)
+  Rendered layout layouts/application.html.erb (Duration: 18.8ms | Allocations: 2790)
+Completed 200 OK in 27ms (Views: 20.9ms | ActiveRecord: 0.4ms | Allocations: 3199)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 14:22:41 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 6.3ms | Allocations: 741)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | Allocations: 1898)
+Completed 200 OK in 19ms (Views: 13.1ms | ActiveRecord: 0.2ms | Allocations: 2827)
+
+
+Started GET "/admin/posts/new" for 127.0.0.1 at 2024-08-23 14:23:05 -0300
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 6.2ms | Allocations: 966)
+  Rendered posts/new.html.erb within layouts/application (Duration: 9.1ms | Allocations: 1206)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 2377)
+Completed 200 OK in 18ms (Views: 15.7ms | ActiveRecord: 0.0ms | Allocations: 2775)
+
+
+Started GET "/admin/posts/3" for 127.0.0.1 at 2024-08-23 14:23:06 -0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:63:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/_post.html.erb (Duration: 0.4ms | Allocations: 37)
+  Rendered posts/show.html.erb within layouts/application (Duration: 3.4ms | Allocations: 516)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 1673)
+Completed 200 OK in 15ms (Views: 10.6ms | ActiveRecord: 0.2ms | Allocations: 2520)
+
+
+Started GET "/admin/posts/new" for 127.0.0.1 at 2024-08-23 14:23:06 -0300
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 5.3ms | Allocations: 980)
+  Rendered posts/new.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1062)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 2233)
+Completed 200 OK in 17ms (Views: 15.6ms | ActiveRecord: 0.0ms | Allocations: 2561)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-08-23 14:23:07 -0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (14.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/_post.html.erb (Duration: 0.3ms | Allocations: 37)
+  Rendered posts/index.html.erb within layouts/application (Duration: 17.6ms | Allocations: 960)
+  Rendered layout layouts/application.html.erb (Duration: 20.2ms | Allocations: 2142)
+Completed 200 OK in 23ms (Views: 21.3ms | ActiveRecord: 0.2ms | Allocations: 2468)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-23 14:23:08 -0300
+Processing by BlogController#index as HTML
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (published_date <= '2024-08-23 17:23:08.034769') ORDER BY published_date desc LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/blog_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  Rendered blog/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 157)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 1723)
+Completed 200 OK in 12ms (Views: 6.4ms | ActiveRecord: 0.3ms | Allocations: 3141)
+
+
